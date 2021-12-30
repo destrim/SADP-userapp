@@ -1,14 +1,11 @@
-import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:test_app/date_range_chart.dart';
 import 'package:test_app/live_chart.dart';
-import 'package:test_app/network_helper.dart';
 
 class ChooseChart extends StatefulWidget {
-  const ChooseChart({Key? key, required this.title}) : super(key: key);
+  const ChooseChart({Key? key, required this.sensorName}) : super(key: key);
 
-  final String title;
+  final String sensorName;
 
   @override
   State<ChooseChart> createState() => _ChooseChartState();
@@ -37,7 +34,11 @@ class _ChooseChartState extends State<ChooseChart> {
               child: ElevatedButton(
                 child: const Text("Date range chart"),
                 onPressed: () {
-                  // Respond to button press
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                          DateRangeChart(sensorName: widget.sensorName)));
                 },
               )
             ),
@@ -49,7 +50,8 @@ class _ChooseChartState extends State<ChooseChart> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                            const LiveChart(title: "title")));
+                            LiveChart(sensorName: widget.sensorName)
+                        ));
                 },
               )
             ),

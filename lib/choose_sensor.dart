@@ -6,9 +6,7 @@ import 'package:test_app/network_helper.dart';
 import 'choose_chart.dart';
 
 class ChooseSensor extends StatefulWidget {
-  const ChooseSensor({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const ChooseSensor({Key? key}) : super(key: key);
 
   @override
   State<ChooseSensor> createState() => _ChooseSensorState();
@@ -17,23 +15,13 @@ class ChooseSensor extends StatefulWidget {
 class _ChooseSensorState extends State<ChooseSensor> {
   List<String> _sensorNames = [];
   final NetworkHelper _networkHelper = NetworkHelper();
-  String? value;
-  late bool _sensorNameChosen;
+  String? chosenSensorName;
+  late bool _isSensorNameChosen;
 
   @override
   void initState() {
-    _sensorNameChosen = false;
+    _isSensorNameChosen = false;
     getSensorNames();
-    // setState(() {
-    //   Timer.periodic(
-    //       const Duration(seconds: 10), (Timer t) {
-    //         if(_sensorNames.isNotEmpty) {
-    //           t.cancel();
-    //         } else {
-    //           getSensorNames();
-    //         }
-    //       });
-    // });
     super.initState();
   }
 
@@ -62,13 +50,13 @@ class _ChooseSensorState extends State<ChooseSensor> {
               children: [
                 Container(
                   child: DropdownButton<String>(
-                    value: value,
+                    value: chosenSensorName,
                     iconSize: 36,
                     isExpanded: true,
                     items: _sensorNames.map(buildMenuItem).toList(),
                     onChanged: (value) {
-                      setState(() => this.value = value);
-                      setState(() => _sensorNameChosen = true);
+                      setState(() => chosenSensorName = value);
+                      setState(() => _isSensorNameChosen = true);
                     },
                   ),
                 ),
@@ -77,19 +65,22 @@ class _ChooseSensorState extends State<ChooseSensor> {
                     child: const Text('Refresh'),
                     onPressed: () {
                       getSensorNames();
+                      if (_sensorNames.isEmpty) {
+                        _isSensorNameChosen = false;
+                      }
                     },
                   ),
                 ),
                 Container(
                   child: ElevatedButton(
                     child: const Text('Next'),
-                    onPressed: _sensorNameChosen
+                    onPressed: _isSensorNameChosen
                         ? () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const ChooseChart(title: "title")));
+                                        ChooseChart(sensorName: chosenSensorName!,)));
                           }
                         : null,
                   ),

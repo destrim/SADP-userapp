@@ -9,9 +9,9 @@ import 'package:test_app/network_helper.dart';
 import 'sensor_data.dart';
 
 class LiveChart extends StatefulWidget {
-  const LiveChart({Key? key, required this.title}) : super(key: key);
+  const LiveChart({Key? key, required this.sensorName}) : super(key: key);
 
-  final String title;
+  final String sensorName;
 
   @override
   State<LiveChart> createState() => _LiveChartState();
@@ -22,6 +22,8 @@ class _LiveChartState extends State<LiveChart> {
   bool loading = true;
   final NetworkHelper _networkHelper = NetworkHelper();
   late ZoomPanBehavior _zoomPanBehavior;
+  String? value;
+  final List<String> charTypes = ["temp", "hum"];
 
   @override
   void initState() {
@@ -54,28 +56,75 @@ class _LiveChartState extends State<LiveChart> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Live data'),
+          title: const Text('live data chart'),
           centerTitle: true,
         ),
-        body: SfCartesianChart(
-          title: ChartTitle(text: 'data'),
-          legend: Legend(isVisible: true),
-          series: <ChartSeries>[
-            LineSeries<SensorData, DateTime>(
-              name: 'temp',
-              dataSource: _sensorData,
-              xValueMapper: (SensorData data, _) => data.timestamp,
-              yValueMapper: (SensorData data, _) => data.temp,
-            )
-          ],
-          primaryXAxis: DateTimeAxis(
-            dateFormat: DateFormat('hh:mm:ss'),
+        body: Center(
+          child: Container(
+            child: Column(
+              children: [
+                // Container(
+                //   width: 100,
+                //   child: DropdownButton<String>(
+                //     value: value,
+                //     iconSize: 36,
+                //     isExpanded: true,
+                //     items: charTypes.map(buildMenuItem).toList(),
+                //     onChanged: (value) => setState(() => this.value = value),
+                //   ),
+                // ),
+                // if (value == "temp") Expanded(
+                //   child: SfCartesianChart(
+                //     title: ChartTitle(text: 'temp'),
+                //     // legend: Legend(isVisible: true),
+                //     series: <ChartSeries>[
+                //       LineSeries<SensorData, DateTime>(
+                //         name: 'temp',
+                //         dataSource: _sensorData,
+                //         xValueMapper: (SensorData data, _) => data.timestamp,
+                //         yValueMapper: (SensorData data, _) => data.temp,
+                //       )
+                //     ],
+                //     primaryXAxis: DateTimeAxis(
+                //       dateFormat: DateFormat('hh:mm:ss'),
+                //     ),
+                //     primaryYAxis: NumericAxis(labelFormat: '{value}°C'),
+                //     enableAxisAnimation: true,
+                //     zoomPanBehavior: _zoomPanBehavior,
+                //   ),
+                // ),
+                // if (value == "hum") Expanded(
+                //   child: SfCartesianChart(
+                //     title: ChartTitle(text: 'hum'),
+                //     // legend: Legend(isVisible: true),
+                //     series: <ChartSeries>[
+                //       LineSeries<SensorData, DateTime>(
+                //         name: 'hum',
+                //         dataSource: _sensorData,
+                //         xValueMapper: (SensorData data, _) => data.timestamp,
+                //         yValueMapper: (SensorData data, _) => data.hum,
+                //       )
+                //     ],
+                //     primaryXAxis: DateTimeAxis(
+                //       dateFormat: DateFormat('hh:mm:ss'),
+                //     ),
+                //     primaryYAxis: NumericAxis(labelFormat: '{value}%'),
+                //     enableAxisAnimation: true,
+                //     zoomPanBehavior: _zoomPanBehavior,
+                //   ),
+                // ),
+              ],
+            ),
           ),
-          primaryYAxis: NumericAxis(labelFormat: '{value}°C'),
-          enableAxisAnimation: true,
-          zoomPanBehavior: _zoomPanBehavior,
         ),
       ),
     );
   }
+
+  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+      value: item,
+      child: Text(
+        item,
+        style: const TextStyle(fontSize: 20),
+      ));
 }
