@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/live_chart.dart';
-import 'live_chart.dart';
+import 'package:test_app/live_data.dart';
+import 'live_data.dart';
 import 'choose_sensor.dart';
 
 void main() {

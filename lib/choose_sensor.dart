@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:test_app/network_helper.dart';
-import 'choose_chart.dart';
+import 'choose_data_presentation.dart';
 
 class ChooseSensor extends StatefulWidget {
   const ChooseSensor({Key? key}) : super(key: key);
@@ -80,7 +80,7 @@ class _ChooseSensorState extends State<ChooseSensor> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        ChooseChart(sensorName: chosenSensorName!,)));
+                                        ChooseDataPresentation(sensorName: chosenSensorName!,)));
                           }
                         : null,
                   ),

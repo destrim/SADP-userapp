@@ -125,7 +125,7 @@ class _DateRangeChartState extends State<DateRangeChart> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('data range chart'),
+          title: const Text('date range chart'),
           centerTitle: true,
         ),
         body: Center(

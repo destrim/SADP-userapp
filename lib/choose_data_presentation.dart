@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/date_range_chart.dart';
-import 'package:test_app/live_chart.dart';
+import 'package:test_app/live_data.dart';
 
-class ChooseChart extends StatefulWidget {
-  const ChooseChart({Key? key, required this.sensorName}) : super(key: key);
+class ChooseDataPresentation extends StatefulWidget {
+  const ChooseDataPresentation({Key? key, required this.sensorName}) : super(key: key);
 
   final String sensorName;
 
   @override
-  State<ChooseChart> createState() => _ChooseChartState();
+  State<ChooseDataPresentation> createState() => _ChooseDataPresentationState();
 }
 
-class _ChooseChartState extends State<ChooseChart> {
+class _ChooseDataPresentationState extends State<ChooseDataPresentation> {
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _ChooseChartState extends State<ChooseChart> {
           children: [
             Container(
               child: ElevatedButton(
-                child: const Text("Date range chart"),
+                child: const Text("date range chart"),
                 onPressed: () {
                   Navigator.push(
                       context,
@@ -44,13 +44,13 @@ class _ChooseChartState extends State<ChooseChart> {
             ),
             Container(
               child: ElevatedButton(
-                child: const Text("LIVE chart"),
+                child: const Text("LIVE data"),
                 onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                            LiveChart(sensorName: widget.sensorName)
+                            LiveData(sensorName: widget.sensorName)
                         ));
                 },
               )
