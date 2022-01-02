@@ -57,7 +57,6 @@ class _DateRangeChartState extends State<DateRangeChart> {
             selectedMaxDate.toString().split(' ')[0]);
 
     List<SensorData> tmp = sensorDataFromJson(response.body);
-    tmp.sort((a, b) => a.timestamp.compareTo(b.timestamp));
     setState(() {
       _sensorData = tmp;
       loading = false;
@@ -211,7 +210,7 @@ class _DateRangeChartState extends State<DateRangeChart> {
                       )
                     ],
                     primaryXAxis: DateTimeAxis(
-                      dateFormat: DateFormat('hh:mm:ss'),
+                      dateFormat: DateFormat('yyyy-MM-dd\nHH:mm:ss'),
                     ),
                     primaryYAxis: NumericAxis(labelFormat: '{value}%'),
                     enableAxisAnimation: true,

@@ -29,7 +29,6 @@ class _ChooseSensorState extends State<ChooseSensor> {
     var response =
         await _networkHelper.get('http://192.168.0.101:8080/sensor/all');
     List<String> tmp = sensorNamesFromJson(response.body);
-    tmp.sort();
     setState(() => _sensorNames = tmp);
   }
 
