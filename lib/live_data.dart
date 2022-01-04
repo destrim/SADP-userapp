@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:intl/intl.dart';
 import 'package:test_app/network_helper.dart';
 
 import 'sensor_data.dart';
@@ -35,7 +33,7 @@ class _LiveDataState extends State<LiveData> {
 
   void getLatestSensorData() async {
     var response = await _networkHelper.get(
-        'http://192.168.0.101:8080/sensor/' +
+        'http://sadp-server.herokuapp.com/sensor/' +
             widget.sensorName +
             '/latest'
     );

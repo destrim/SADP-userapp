@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/date_range_chart.dart';
-import 'package:test_app/live_data.dart';
+import 'date_range_chart.dart';
+import 'live_data.dart';
 
 class ChooseDataPresentation extends StatefulWidget {
   const ChooseDataPresentation({Key? key, required this.sensorName}) : super(key: key);

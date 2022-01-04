@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -27,7 +26,7 @@ class _ChooseSensorState extends State<ChooseSensor> {
 
   void getSensorNames() async {
     var response =
-        await _networkHelper.get('http://192.168.0.101:8080/sensor/all');
+        await _networkHelper.get('http://sadp-server.herokuapp.com/sensor/all');
     List<String> tmp = sensorNamesFromJson(response.body);
     setState(() => _sensorNames = tmp);
   }

@@ -27,16 +27,11 @@ class _DateRangeChartState extends State<DateRangeChart> {
   String? value;
 
   late ZoomPanBehavior _zoomPanBehavior;
-  // late DateTime dateRangeMin;
-  // late DateTime dateRangeMax;
   late DateTime selectedMinDate;
   late DateTime selectedMaxDate;
 
   @override
   void initState() {
-    // getDateRange();
-    // selectedMinDate = dateRangeMin;
-    // selectedMaxDate = dateRangeMax;
     selectedMinDate = DateTime.now();
     selectedMaxDate = DateTime.now();
     _zoomPanBehavior = ZoomPanBehavior(
@@ -49,7 +44,7 @@ class _DateRangeChartState extends State<DateRangeChart> {
 
   void getSensorData() async {
     var response = await _networkHelper.get(
-        'http://192.168.0.101:8080/sensor/' +
+        'http://sadp-server.herokuapp.com/sensor/' +
             widget.sensorName +
             '/datainrange?min=' +
             selectedMinDate.toString().split(' ')[0] +
@@ -66,30 +61,11 @@ class _DateRangeChartState extends State<DateRangeChart> {
   List<SensorData> sensorDataFromJson(String str) => List<SensorData>.from(
       json.decode(str).map((x) => SensorData.fromJson(x)));
 
-  // void getDateRange() async {
-  //   var response = await _networkHelper.get('http://192.168.0.101:8080/sensor/daterange/' + widget.sensorName);
-  //   List<DateTime> dateRange = dateRangeFromJson(response.body);
-  //   setState(() {
-  //     dateRangeMin = dateRange[0];
-  //     dateRangeMax = dateRange[1];
-  //   }
-  //   );
-  // }
-  //
-  // List<DateTime> dateRangeFromJson(String str) {
-  //   List<String> stringList = List<String>.from(json.decode(str));
-  //   List<DateTime> dateTimeList = [DateTime.parse(stringList[0]), DateTime.parse(stringList[1])];
-  //   return dateTimeList;
-  // }
-
-
   Future<void> _selectMinDate(BuildContext context) async {
 
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: selectedMinDate,
-        // firstDate: DateTime(dateRangeMin.year, dateRangeMin.month),
-        // lastDate: DateTime(dateRangeMax.year, dateRangeMax.month)
         firstDate: DateTime.now().subtract(const Duration(days: 365)),
         lastDate: DateTime.now()
     );
@@ -106,8 +82,6 @@ class _DateRangeChartState extends State<DateRangeChart> {
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: selectedMaxDate,
-        // firstDate: DateTime(dateRangeMin.year, dateRangeMin.month),
-        // lastDate: DateTime(dateRangeMax.year, dateRangeMax.month)
         firstDate: DateTime.now().subtract(const Duration(days: 365)),
         lastDate: DateTime.now()
     );
