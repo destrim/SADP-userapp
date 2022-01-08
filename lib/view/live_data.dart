@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:test_app/network_helper.dart';
+import 'package:test_app/service/network_helper.dart';
 
-import 'sensor_data.dart';
+import '../model/sensor_data.dart';
 
 class LiveData extends StatefulWidget {
   const LiveData({Key? key, required this.sensorName}) : super(key: key);

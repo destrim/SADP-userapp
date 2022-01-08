@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:test_app/network_helper.dart';
+import 'package:test_app/service/network_helper.dart';
 import 'choose_data_presentation.dart';
 
 class ChooseSensor extends StatefulWidget {

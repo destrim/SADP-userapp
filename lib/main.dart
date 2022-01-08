@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'choose_sensor.dart';
+import 'view/choose_sensor.dart';
 
 void main() {
   runApp(const MyApp());

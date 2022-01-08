@@ -5,9 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:intl/intl.dart';
-import 'package:test_app/network_helper.dart';
+import 'package:test_app/service/network_helper.dart';
 
-import 'sensor_data.dart';
+import '../model/sensor_data.dart';
 
 class DateRangeChart extends StatefulWidget {
   const DateRangeChart({Key? key, required this.sensorName}) : super(key: key);
